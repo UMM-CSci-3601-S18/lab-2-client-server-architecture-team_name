@@ -1,4 +1,4 @@
-package umm3601.todos;
+package umm3601.todo;
 
 import com.google.gson.Gson;
 
@@ -15,11 +15,11 @@ import java.util.Map;
  * specified JSON file, and then provide various database-like
  * methods that allow the `UserController` to "query" the "database".
  */
-public class Database {
+public class TodoDatabase {
 
   private Todo[] allTodos;
 
-  public Database(String todoDataFile) throws IOException {
+  public TodoDatabase(String todoDataFile) throws IOException {
     Gson gson = new Gson();
     FileReader reader = new FileReader(todoDataFile);
     allTodos = gson.fromJson(reader, Todo[].class);
