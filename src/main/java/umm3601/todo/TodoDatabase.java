@@ -48,8 +48,7 @@ public class TodoDatabase {
 
     // Filter age if defined
     if(queryParams.containsKey("status")) {
-      String [] target = queryParams.get("status");
-      String targetStatus = target[0];
+      String targetStatus = queryParams.get("status")[0];
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
     }
     // Process other query parameters here...
@@ -69,7 +68,11 @@ public class TodoDatabase {
    * the target age
    */
   public Todo[] filterTodosByStatus(Todo[] todos, String targetStatus) {
-    return Arrays.stream(todos).filter(x -> x.status.equals(targetStatus)).toArray(Todo[]::new);
+    if (targetStatus.equals("complete")) {
+      return Arrays.stream(todos).filter(x -> x.status.equals(true)).toArray(Todo[]::new);
+    } else {
+      return Arrays.stream(todos).filter(x -> x.status.equals(false)).toArray(Todo[]::new);
+    }
   }
 
   public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
