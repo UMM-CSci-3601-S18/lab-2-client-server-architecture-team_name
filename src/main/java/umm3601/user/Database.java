@@ -39,7 +39,7 @@ public class Database {
 
   /**
    * Get an array of all the users satisfying the queries in the params.
-   *
+   *s?status=complete
    * @param queryParams map of required key-value pairs for the query
    * @return an array of all the users matching the given criteria
    */
