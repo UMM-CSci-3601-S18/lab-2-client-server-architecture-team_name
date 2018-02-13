@@ -8,12 +8,12 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * A fake "database" of user info
+ * A fake "database" of todo info
  *
  * Since we don't want to complicate this lab with a real database,
  * we're going to instead just read a bunch of user data from a
  * specified JSON file, and then provide various database-like
- * methods that allow the `UserController` to "query" the "database".
+ * methods that allow the `TodoController` to "query" the "database".
  */
 public class TodoDatabase{
 
@@ -26,11 +26,11 @@ public class TodoDatabase{
   }
 
   /**
-   * Get the single user specified by the given ID. Return
-   * `null` if there is no user with that ID.
+   * Get the single todo specified by the given ID. Return
+   * `null` if there is no todo with that ID.
    *
-   * @param id the ID of the desired user
-   * @return the user with the given ID, or null if there is no user
+   * @param id the ID of the desired todo
+   * @return the todo with the given ID, or null if there is no todo
    * with that ID
    */
   public Todo getTodo(String id) {
@@ -38,10 +38,10 @@ public class TodoDatabase{
   }
 
   /**
-   * Get an array of all the users satisfying the queries in the params.
+   * Get an array of all the todos satisfying the queries in the params.
    *
    * @param queryParams map of required key-value pairs for the query
-   * @return an array of all the users matching the given criteria
+   * @return an array of all the todos matching the given criteria
    */
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
@@ -89,12 +89,12 @@ public class TodoDatabase{
   }
 
   /**
-   * Get an array of all the users having the target age.
+   * Get an array of all the todos having the target status.
    *
    * @param todos the list of users to filter by age
-   * @param targetStatus the target age to look for
-   * @return an array of all the users from the given list that have
-   * the target age
+   * @param targetStatus the target status to look for
+   * @return an array of all the todos from the given list that have
+   * the target status
    */
   public Todo[] filterTodosByStatus(Todo[] todos, String targetStatus) {
     if (targetStatus.equals("complete")) {
