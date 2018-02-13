@@ -7,18 +7,34 @@
   <script type="text/javascript" src="javascript/todos.js"> </script>
 </head>
 <body>
-<button type="button" id="getAll">Get All TODOS</button>
+<button type="button" id="getAll">Get All Todos</button>
+<button type="button" id="goBack">Go Back</button>
 
 <hr/>
 
-
-<div><input type="radio" name="Gender" value="Male" checked="checked" /> Male</div>
-<div><input type="radio" name="Gender" value="Female" checked="" /> Female</div>
-
 <div id="jsonDump" style="margin-top:20px"> Json will go here </div>
 
-status: <input id="status" type= "text" name="status">
-<button type="button" id="getUsersByStatus"> get users by Status </button>
+Search by
+<br />
+Id <input id="owner" type= "text" name="owner"> <br />
+Owner <input id="owner" type= "text" name="owner"> <br />
+Status <input id="owner" type= "text" name="owner"> <br />
+Body <input id="owner" type= "text" name="owner"> <br />
+Category <input id="owner" type= "text" name="owner"> <br />
+<button type="button" id="getTodosByArb"> Search </button>
+<br />
+<br />
+Search by
+<div class="dropdown">
+  <button class="dropbtn">Category</button>
+  <div class="dropdown-content">
+    <a href="#groceries" onclick="addEventListener('click', getAllTodosByGroceries, true)">Groceries</a>
+    <a href="#homework">Homework</a>
+    <a href="#software design">Software Design</a>
+    <a href="#video games">Video Games</a>
+  </div>
+</div>
+
 
 <script>
   window.onload = function() {
@@ -27,8 +43,17 @@ status: <input id="status" type= "text" name="status">
     var element = document.getElementById('getAll');
     element.addEventListener("click", getAllTodos, true);
 
-    element = document.getElementById('getUsersByStatus');
-    element.addEventListener("click", getAllUsersByStatus, true);
+    element = document.getElementById('goBack');
+    element.addEventListener("click", goAllBack, true);
+
+    element = document.getElementById('getTodosByOwner');
+    element.addEventListener("click", getAllTodosByOwner, true);
+
+    element = document.getElementById('getTodosByBody');
+    element.addEventListener("click", getAllTodosByBody, true);
+
+    element = document.getElementById('getTodoByGroceries');
+    element.addEventListener("click", getAllTodosByGroceries, true);
   }
 </script>
 </body>
