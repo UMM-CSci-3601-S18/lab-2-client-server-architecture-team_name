@@ -17,26 +17,17 @@ function goAllBack() {
   });
 }
 
-function getAllTodosByOwner() {
-  console.log("Getting all the Todos by Owner.");
+function getAllTodosById() {
+  console.log("Getting the Todo by ID.");
 
   var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?owner=" + document.getElementById("owner").value, function (returned_json) {
-    document.getElementById('jsonDump').innerHTML = returned_json;
-  });
-}
-
-function getAllTodosByBody() {
-  console.log("Getting all the Todos by body.");
-
-  var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?contains=" + document.getElementById("body").value, function (returned_json) {
+  HttpThingy.get("/api/todos/" + document.getElementById("id").value, function (returned_json) {
     document.getElementById('jsonDump').innerHTML = returned_json;
   });
 }
 
 function getAllTodosByGroceries() {
-  console.log("Getting all the Todos by Category.");
+  console.log("Getting all the Todos in groceries.");
 
   var HttpThingy = new HttpClient();
   HttpThingy.get("/api/todos?category=groceries" + document.getElementById("category").value, function (returned_json) {

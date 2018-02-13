@@ -54,7 +54,9 @@ public class TodoDatabase{
     // Process other query parameters here...
     if(queryParams.containsKey("limit")) {
       int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
-      filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
+        if(targetLimit != 0) {
+          filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
+        }
     }
 
     if(queryParams.containsKey("contains")) {
