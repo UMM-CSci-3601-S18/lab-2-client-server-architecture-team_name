@@ -20,10 +20,10 @@ public class FilterTodosByLimitFromDB {
     TodoDatabase db = new TodoDatabase("src/main/data/todos.json");
     Todo[] allTodos = db.listTodos(new HashMap<>());
 
-    Todo[] limitThree = db.filterTodosByLimit(allTodos,3);
+    Todo[] limitThree = db.filterTodosByLimit(allTodos,"3");
     assertEquals("incorrect # of entries",3, limitThree.length);
 
-    Todo[] limitFifteen = db.filterTodosByLimit(allTodos, 15);
+    Todo[] limitFifteen = db.filterTodosByLimit(allTodos, "15");
     assertEquals("incorrect # of entries",15,limitFifteen.length);
   }
 }
