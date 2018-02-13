@@ -46,17 +46,9 @@ public class TodoDatabase{
   public Todo[] listTodos(Map<String, String[]> queryParams) {
     Todo[] filteredTodos = allTodos;
 
-    // Filter age if defined
     if(queryParams.containsKey("status")) {
       String targetStatus = queryParams.get("status")[0];
       filteredTodos = filterTodosByStatus(filteredTodos, targetStatus);
-    }
-    // Process other query parameters here...
-    if(queryParams.containsKey("limit")) {
-      int targetLimit = Integer.parseInt(queryParams.get("limit")[0]);
-        if(targetLimit != 0) {
-          filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
-        }
     }
 
     if(queryParams.containsKey("contains")) {
@@ -88,6 +80,13 @@ public class TodoDatabase{
         filteredTodos = filterTodosByOBCategory(filteredTodos);
       }
     }
+
+    if(queryParams.containsKey("limit")) {
+      String targetLimit = queryParams.get("limit")[0];
+      if(targetLimit.compareTo("") != 0) {
+        filteredTodos = filterTodosByLimit(filteredTodos, targetLimit);
+      }
+    }
     return filteredTodos;
   }
 
@@ -107,8 +106,8 @@ public class TodoDatabase{
     }
   }
 
-  public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
-    return Arrays.stream(todos).limit(targetLimit).toArray(Todo[]::new);
+  public Todo[] filterTodosByLimit(Todo[] todos, String targetLimit) {
+    return Arrays.stream(todos).limit(Integer.parseInt(targetLimit)).toArray(Todo[]::new);
   }
 
   public Todo[] filterTodosByBody(Todo[] todos, String targetBody) {
