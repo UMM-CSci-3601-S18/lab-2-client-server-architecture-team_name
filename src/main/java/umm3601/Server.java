@@ -46,9 +46,11 @@ public class Server {
 
     // Get specific user
     get("api/users/:id", userController::getUser);
+    // Get specific todo
     get("api/todos/:id", todoController::getTodo);
     // List users, filtered using query parameters
     get("api/users", userController::getUsers);
+    // List todos, filtered using query parameters
     get("api/todos", todoController::getTodos);
 
     // An example of throwing an unhandled exception so you can see how the
@@ -92,7 +94,16 @@ public class Server {
 
     return userController;
   }
-
+  /***
+   * Create a database using the json fie, use it as
+   * data source for a new TodoController
+   *
+   * Constructing the controller might throw an IOException if
+   * there are problems reading from the JSON "database" file.
+   * If that happens we'll print out an error message and shut
+   * the server down.
+   * @throws IOException if we can't open or read the user data file
+   */
   private static TodoController buildTodoController() {
     TodoController todoController = null;
 
