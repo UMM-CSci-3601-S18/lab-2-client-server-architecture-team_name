@@ -10,7 +10,7 @@ import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Tests umm3601.user.Database listTodo functionality
+ * Tests umm3601.todo.TodoDatabase listTodos functionality
  */
 public class FullTodoListFromDB {
 

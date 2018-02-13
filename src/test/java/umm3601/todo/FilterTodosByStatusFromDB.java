@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
-
+/**
+ * Tests umm3601.todo.TodoDatabase filterTodosByStatus
+ */
 public class FilterTodosByStatusFromDB {
   @Test
   public void filterTodosByStatus() throws IOException {
