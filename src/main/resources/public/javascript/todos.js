@@ -8,7 +8,13 @@ function getAllTodos() {
   });
 }
 
+/*function getAllUsersByStatus() {
+  console.log("Getting all the Status.");
 
+  var HttpThingy = new HttpClient();
+  HttpThingy.get("/api/todos?status=complete" +  document.getElementById("status").value, function(returned_json){
+    document.getElementById('jsonDump').innerHTML = returned_json;
+  });*/
 
 function HttpClient() {
   // We'll take a URL string, and a callback function.
