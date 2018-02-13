@@ -51,8 +51,6 @@ public class Server {
     get("api/users", userController::getUsers);
     get("api/todos", todoController::getTodos);
 
-    get("api/todos?limit=", todoController::getTodos);
-
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
     get("api/error", (req, res) -> {

@@ -26,15 +26,6 @@ function getAllTodosById() {
   });
 }
 
-function getAllTodosByGroceries() {
-  console.log("Getting all the Todos in groceries.");
-
-  var HttpThingy = new HttpClient();
-  HttpThingy.get("/api/todos?category=groceries" + document.getElementById("category").value, function (returned_json) {
-    document.getElementById('jsonDump').innerHTML = returned_json;
-  });
-}
-
 function HttpClient() {
   // We'll take a URL string, and a callback function.
   this.get = function(aUrl, aCallback){
