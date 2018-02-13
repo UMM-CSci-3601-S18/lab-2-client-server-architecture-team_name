@@ -1,9 +1,11 @@
 package umm3601.todo;
 
-public class Todo {
+public class Todo{
   String _id;
   String owner;
-  String status;
+  boolean status;
   String body;
   String category;
+
+
 }

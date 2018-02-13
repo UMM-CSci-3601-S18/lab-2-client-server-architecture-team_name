@@ -15,7 +15,7 @@ import java.util.Map;
  * specified JSON file, and then provide various database-like
  * methods that allow the `UserController` to "query" the "database".
  */
-public class TodoDatabase {
+public class TodoDatabase{
 
   private Todo[] allTodos;
 
@@ -72,6 +72,20 @@ public class TodoDatabase {
       filteredTodos = filterTodosByCategory(filteredTodos, targetCategory);
     }
 
+    if(queryParams.containsKey("orderBy")) {
+      if (queryParams.get("orderBy")[0].equals("owner")){
+        filteredTodos = filterTodosByOBOwner(filteredTodos);
+      }
+      if (queryParams.get("orderBy")[0].equals("status")){
+        filteredTodos = filterTodosByOBStatus(filteredTodos);
+      }
+      if (queryParams.get("orderBy")[0].equals("body")){
+        filteredTodos = filterTodosByOBBody(filteredTodos);
+      }
+      if (queryParams.get("orderBy")[0].equals("category")){
+        filteredTodos = filterTodosByOBCategory(filteredTodos);
+      }
+    }
     return filteredTodos;
   }
 
@@ -85,9 +99,9 @@ public class TodoDatabase {
    */
   public Todo[] filterTodosByStatus(Todo[] todos, String targetStatus) {
     if (targetStatus.equals("complete")) {
-      return Arrays.stream(todos).filter(x -> (Boolean.parseBoolean(x.status))==(true)).toArray(Todo[]::new);
+      return Arrays.stream(todos).filter(x -> (x.status)==(true)).toArray(Todo[]::new);
     } else {
-      return Arrays.stream(todos).filter(x -> (Boolean.parseBoolean(x.status))==(false)).toArray(Todo[]::new);
+      return Arrays.stream(todos).filter(x -> (x.status)==(false)).toArray(Todo[]::new);
     }
   }
 
@@ -106,6 +120,23 @@ public class TodoDatabase {
   public Todo[] filterTodosByCategory(Todo[] todos, String targetCategory) {
     return Arrays.stream(todos).filter(x -> x.category.equals(targetCategory)).toArray(Todo[]::new);
   }
+
+  public Todo[] filterTodosByOBStatus(Todo[] todos) {
+    return Arrays.stream(todos).sorted((a,b)-> String.valueOf(a.status).compareTo(String.valueOf(b.status))).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByOBOwner(Todo[] todos) {
+    return Arrays.stream(todos).sorted((a,b)-> a.owner.compareTo(b.owner)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByOBBody(Todo[] todos) {
+    return Arrays.stream(todos).sorted((a,b)-> a.body.compareTo(b.body)).toArray(Todo[]::new);
+  }
+
+  public Todo[] filterTodosByOBCategory(Todo[] todos) {
+    return Arrays.stream(todos).sorted((a,b)-> a.category.compareTo(b.category)).toArray(Todo[]::new);
+  }
+
 
 
 }
