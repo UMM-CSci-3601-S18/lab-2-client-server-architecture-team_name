@@ -69,13 +69,18 @@ public class TodoDatabase {
    */
   public Todo[] filterTodosByStatus(Todo[] todos, String targetStatus) {
     if (targetStatus.equals("complete")) {
-      return Arrays.stream(todos).filter(x -> x.status.equals(true)).toArray(Todo[]::new);
+      return Arrays.stream(todos).filter(x -> (Boolean.parseBoolean(x.status))==(true)).toArray(Todo[]::new);
     } else {
-      return Arrays.stream(todos).filter(x -> x.status.equals(false)).toArray(Todo[]::new);
+      return Arrays.stream(todos).filter(x -> (Boolean.parseBoolean(x.status))==(false)).toArray(Todo[]::new);
     }
   }
 
   public Todo[] filterTodosByLimit(Todo[] todos, int targetLimit) {
     return Arrays.stream(todos).limit(targetLimit).toArray(Todo[]::new);
   }
+
+  public Todo[] filterTodosByBody(Todo[] todos, String targetBody) {
+    return Arrays.stream(todos).filter(x -> x.body.contains((CharSequence )targetBody)).toArray(Todo[]::new);
+  }
+
 }
